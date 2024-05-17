@@ -23,9 +23,9 @@ class Vampire {
   // Returns the number of vampires away from the original vampire this vampire is
   get numberOfVampiresFromOriginal() {
     let numberOfVampires = 0;
-    let currentVampire = this;
-    while (currentVampire.creator) {
-      currentVampire = currentVampire.creator;
+    let currentVampire = this; // the this keyword means the current vampire 
+    while (currentVampire.creator) { // if there is a creator
+      currentVampire = currentVampire.creator; // set the current vampire to the creator
       numberOfVampires++;
     }
 
@@ -51,22 +51,22 @@ class Vampire {
   closestCommonAncestor(vampire) {
     let currentVampire = this;
     let ancestor = null;
-    while (currentVampire) {
-      let otherVampire = vampire;
-      while (otherVampire) {
-        if (currentVampire === otherVampire) {
-          ancestor = currentVampire;
-          break;
+    let stop = false;
+
+    while (!stop) { // while stop is false
+      let temp = vampire;
+      while (!stop) {
+        if (currentVampire === temp) { // if the current vampire is equal to the temp
+          ancestor = currentVampire; // set the ancestor to the current vampire
+          stop = true; //stop the loop 
+        } else if (currentVampire.isMoreSeniorThan(temp)) { // if the current vampire is more senior than the temp
+          temp = temp.creator; // set the temp to the creator
+        } else {
+          currentVampire = currentVampire.creator; // set the current vampire to the creator
         }
-        otherVampire = otherVampire.creator;
       }
-      if (ancestor) {
-        break;
-      }
-      currentVampire = currentVampire.creator;
     }
     return ancestor;
-    
   }
 }
 
