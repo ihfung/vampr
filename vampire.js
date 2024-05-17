@@ -83,8 +83,8 @@ class Vampire {
   // Returns the total number of vampires that exist
   get totalDescendents() {
     let result = 0;
-    for (const value in this.offspring) {
-      result += this.offspring[value].totalDescendents;
+    for (const value in this.offspring) { // for each value in the offspring
+      result += this.offspring[value].totalDescendents; // add the total number of offspring to the result
     }
     return result;
   }
@@ -95,11 +95,12 @@ class Vampire {
     if (this.yearConverted > 1980) {
       temp.push(this);
     }
+
     
-    for (const value in this.offspring) {
-      const vampire = this.offspring[value];
-      const millennialVampires = vampire.allMillennialVampires;
-      temp = temp.concat(millennialVampires);
+    for (const value in this.offspring) { // for each value in the offspring
+      const vampire = this.offspring[value]; // vampire is equal to the offspring
+      const millVampires = vampire.allMillennialVampires; // millVampires is equal to the allMillennialVampires
+      temp = temp.concat(millVampires); // add the millVampires to the temp
     }
     return temp;
 
