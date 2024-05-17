@@ -4,6 +4,8 @@ class Vampire {
     this.yearConverted = yearConverted;
     this.offspring = [];
     this.creator = null;
+
+    
   }
 
   /** Simple tree methods **/
@@ -23,7 +25,7 @@ class Vampire {
   // Returns the number of vampires away from the original vampire this vampire is
   get numberOfVampiresFromOriginal() {
     let numberOfVampires = 0;
-    let currentVampire = this; // the this keyword means the current vampire 
+    let currentVampire = this; // the this keyword means the current vampire
     while (currentVampire.creator) { // if there is a creator
       currentVampire = currentVampire.creator; // set the current vampire to the creator
       numberOfVampires++;
@@ -58,7 +60,7 @@ class Vampire {
       while (!stop) {
         if (currentVampire === temp) { // if the current vampire is equal to the temp
           ancestor = currentVampire; // set the ancestor to the current vampire
-          stop = true; //stop the loop 
+          stop = true; //stop the loop
         } else if (currentVampire.isMoreSeniorThan(temp)) { // if the current vampire is more senior than the temp
           temp = temp.creator; // set the temp to the creator
         } else {
@@ -68,6 +70,36 @@ class Vampire {
     }
     return ancestor;
   }
+
+  // Returns the vampire object with that name, or null if no vampire exists with that name
+  vampireWithName(name) {
+    if (this.name !== name) {
+      return null;
+    
+    }
+    return this.name;
+  }
+
+  // Returns the total number of vampires that exist
+  get totalDescendents() {
+    let result = 0;
+    for (const value in this.offspring) {
+      result += this.offspring[value].totalDescendents;
+    }
+    return result;
+  }
+
+  // Returns an array of all the vampires that were converted after 1980
+  get allMillennialVampires() {
+    let temp = [];
+    if (this.yearConverted > 1980) {
+      temp.push(this);
+    }
+    
+    return temp;
+
+  }
+
 }
 
 module.exports = Vampire;
