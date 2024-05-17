@@ -96,6 +96,11 @@ class Vampire {
       temp.push(this);
     }
     
+    for (const value in this.offspring) {
+      const vampire = this.offspring[value];
+      const millennialVampires = vampire.allMillennialVampires;
+      temp = temp.concat(millennialVampires);
+    }
     return temp;
 
   }
