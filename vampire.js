@@ -100,6 +100,7 @@ class Vampire {
     for (const value in this.offspring) { // for each value in the offspring
       const vampire = this.offspring[value]; // vampire is equal to the offspring
       const millVampires = vampire.allMillennialVampires; // millVampires is equal to the allMillennialVampires
+      //concat is used to join two or more arrays
       temp = temp.concat(millVampires); // add the millVampires to the temp
     }
     return temp;
